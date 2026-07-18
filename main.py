@@ -26,7 +26,11 @@
 # of iterations, and plot the function.
 
 import numpy as np
-# import matplotlib as plt
+import matplotlib.pyplot as plt
+
+
+def f(x):
+    return x**3 - x - 2
 
 
 def bisection_method(f, a, b, tol):
@@ -49,15 +53,23 @@ def bisection_method(f, a, b, tol):
         return bisection_method(f, a, midpoint, tol)
 
 
-def main():
-    f = lambda x: x**3 - x - 2
-    r1 = bisection_method(f, 1, 2, 0.1)
-    print("r1 = ", r1)
-    r01 = bisection_method(f, 1, 2, 0.01)
-    print("r01 = ", r01)
+def draw_chart(f):
+    y_values = []
+    for i in range(0, 5):
+        y_values.append(f(i))
 
-    print("f(r1) = ", f(r1))
-    print("f(r01) = ", f(r01))
+    plt.plot([0, 1, 2, 3, 4], y_values)
+    plt.ylabel("Y-axis")
+    plt.xlabel("X-axis")
+    plt.show()
+
+
+def main():
+    # Pass in values to get approximate root
+    root = bisection_method(f, 1, 2, 1e-6)
+    print("Root =", root)
+
+    draw_chart(f)
 
 
 if __name__ == "__main__":
