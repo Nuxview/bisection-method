@@ -30,6 +30,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Ask for equation and interval from the user
+# You can input your equation using standard Python math syntax.
+# Examples:
+# - Euler's number (e): np.e(x) - 4*x
+# - Trig functions: np.sin(x) + np.cos(x)
 equation = input("Enter the equation: ")
 a = float(input("Enter the lower bound: "))
 b = float(input("Enter the upper bound: "))
@@ -75,7 +79,7 @@ def draw_chart(f):
 def main():
     # Pass in values to get approximate root
     root, iterations = bisection_method(f, a=a, b=b, tol=1e-6)
-    print("Root =", round(root, 6), "\nIterations =", iterations)
+    print("\nRoot =", round(root, 6), "\nIterations =", iterations)
 
     # Draw the chart
     draw_chart(f)
