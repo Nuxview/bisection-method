@@ -29,10 +29,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Ask for equation and interval from the user
+equation = input("Enter the equation: ")
+a = float(input("Enter the lower bound: "))
+b = float(input("Enter the upper bound: "))
+
 # Define the equation to solve
 def f(x):
-    return x**3 - x - 2
-
+    return eval(equation)
 
 def bisection_method(f, a, b, tol, iterations=1):
     # Check if f(a) and f(b) are of different signs
