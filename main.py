@@ -45,7 +45,8 @@ def f(x):
 def bisection_method(f, a, b, tol, iterations=1):
     # Check if f(a) and f(b) are of different signs
     if np.sign(f(a)) == np.sign(f(b)):
-        raise Exception("Scalars a and b do not bound a root.")
+        print("Scalars a and b do not bound a root.")
+        exit()
 
     # Calculate the midpoint of a and b
     midpoint = (a + b) / 2
@@ -63,17 +64,32 @@ def bisection_method(f, a, b, tol, iterations=1):
     else:
         return bisection_method(f, a, midpoint, tol, iterations)
 
-# Calculate values (x,y)
+# Function to draw the chart
 def draw_chart(f):
+    # Calculate y-values for the function
     y_values = []
     for i in range(0, 5):
         y_values.append(f(i))
 
     # Plot the chart using calculated (x,y) values
     plt.plot([0, 1, 2, 3, 4], y_values)
+
+    # Add title, grid and axis labels
+    plt.title("Function Chart for " + str(f))
     plt.ylabel("Y-axis")
     plt.xlabel("X-axis")
-    plt.show()
+    plt.grid(True)
+
+    # Ask the user if they want to see the chart
+    image_name = 'bisection_chart.png'
+    if input("\nShow chart? (y/n): ").lower() == "n":
+        print("Exiting...")
+        exit()
+    else:
+        if input("Separate window or save to image? (window/image): ").lower() == "image":
+            plt.savefig(image_name)
+        else:
+            plt.show()
 
 
 def main():
@@ -84,6 +100,6 @@ def main():
     # Draw the chart
     draw_chart(f)
 
-
+# Entry point of the program
 if __name__ == "__main__":
     main()
