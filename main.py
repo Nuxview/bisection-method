@@ -49,7 +49,7 @@ def bisection_method(f, a, b, tol, iterations=1):
     # Counter to track number of iterations
     iterations += 1
 
-    # Case where the midpoint is the root
+    # Check if midpoint is the root
     if np.abs(f(midpoint)) < tol:
         return midpoint, iterations
 
@@ -74,7 +74,7 @@ def draw_chart(f):
 
 def main():
     # Pass in values to get approximate root
-    root, iterations = bisection_method(f, 1, 2, 1e-6)
+    root, iterations = bisection_method(f, a=a, b=b, tol=1e-6)
     print("Root =", round(root, 6), "\nIterations =", iterations)
 
     # Draw the chart
