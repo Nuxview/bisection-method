@@ -1,6 +1,6 @@
 # Bisection Method Implementation
 
-This repository contains a Python implementation of the Bisection Method, developed as part of a numerical analysis coursework. The goal of the project is to approximate the root of the function \( f(x) = x^3 - x - 2 \) on the interval \([1, 2]\) with a specified tolerance.
+This repository contains a Python implementation of the Bisection Method, developed as part of a numerical analysis coursework.
 
 ## Project Structure
 
