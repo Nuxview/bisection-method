@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 # Ask for equation and interval from the user
 # You can input your equation using standard Python math syntax.
 # Examples:
-# - Euler's number (e): np.e(x) - 4*x
+# - Euler's number (e): np.exp(x) - 4*x
 # - Trig functions: np.sin(x) + np.cos(x)
 equation = input("Enter the equation: ")
 a = float(input("Enter the lower bound: "))
