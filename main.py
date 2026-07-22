@@ -30,17 +30,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Ask for equation and interval from the user
-# You can input your equation using standard Python math syntax.
-# Examples:
-# - Euler's number (e): np.exp(x) - 4*x
-# - Trig functions: np.sin(x) + np.cos(x)
+print("Enter your equation using standard Python math syntax (e.g., 'x**3 - x - 2').")
+print("For special functions, use the 'np.' prefix (e.g., 'np.exp(x) - 4*x', 'np.sin(x) + np.cos(x)').")
 equation = input("Enter the equation: ")
 a = float(input("Enter the lower bound: "))
 b = float(input("Enter the upper bound: "))
 
 # Define the equation to solve
 def f(x):
-    return eval(equation)
+    # Using a dictionary to provide a safe evaluation context for 'np' functions
+    context = {"x": x, "np": np}
+    return eval(equation, {"__builtins__": {}}, context)
 
 # Global list to track midpoints
 midpoints_history = []
@@ -73,7 +73,7 @@ def draw_chart(midpoints):
     # Plot the convergence
     plt.figure(figsize=(10, 6))
     plt.plot(range(1, len(midpoints) + 1), midpoints, marker='o', linestyle='-')
-    
+
     # Add title, grid and axis labels
     plt.title("Convergence of Midpoints (Bisection Method)")
     plt.ylabel("Midpoint Value")
@@ -94,8 +94,11 @@ def draw_chart(midpoints):
 
 def main():
     # Pass in values to get approximate root
-    root, iterations = bisection_method(f, a=a, b=b, tol=1e-6)
-    print("\nRoot =", round(root, 6), "\nIterations =", iterations)
+    approx_root, iterations = bisection_method(f, a=a, b=b, tol=1e-6)
+
+    print("\n--- Results ---")
+    print("Approximate Root =", approx_root)
+    print("Iterations =", iterations)
 
     # Draw the chart
     draw_chart(midpoints_history)

@@ -1,10 +1,10 @@
 [project]
 name = "bisection-method"
 version = "0.1.0"
-description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = ["numpy>=2.5.0", "matplotlib>=3.10.0"]
-
-[project.optional-dependencies]
-lint = ["ruff"]
+dependencies = [
+    "numpy>=2.5.0",
+    "matplotlib>=3.10.0",
+    "ruff>=0.15.22",
+]
