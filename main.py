@@ -42,6 +42,9 @@ b = float(input("Enter the upper bound: "))
 def f(x):
     return eval(equation)
 
+# Global list to track midpoints
+midpoints_history = []
+
 def bisection_method(f, a, b, tol, iterations=1):
     # Check if f(a) and f(b) are of different signs
     if np.sign(f(a)) == np.sign(f(b)):
@@ -50,6 +53,7 @@ def bisection_method(f, a, b, tol, iterations=1):
 
     # Calculate the midpoint of a and b
     midpoint = (a + b) / 2
+    midpoints_history.append(midpoint)
 
     # Counter to track number of iterations
     iterations += 1
@@ -65,19 +69,15 @@ def bisection_method(f, a, b, tol, iterations=1):
         return bisection_method(f, a, midpoint, tol, iterations)
 
 # Function to draw the chart
-def draw_chart(f):
-    # Calculate y-values for the function
-    y_values = []
-    for i in range(0, 5):
-        y_values.append(f(i))
-
-    # Plot the chart using calculated (x,y) values
-    plt.plot([0, 1, 2, 3, 4], y_values)
-
+def draw_chart(midpoints):
+    # Plot the convergence
+    plt.figure(figsize=(10, 6))
+    plt.plot(range(1, len(midpoints) + 1), midpoints, marker='o', linestyle='-')
+    
     # Add title, grid and axis labels
-    plt.title("Function Chart for " + str(f))
-    plt.ylabel("Y-axis")
-    plt.xlabel("X-axis")
+    plt.title("Convergence of Midpoints (Bisection Method)")
+    plt.ylabel("Midpoint Value")
+    plt.xlabel("Iteration")
     plt.grid(True)
 
     # Ask the user if they want to see the chart
@@ -98,7 +98,7 @@ def main():
     print("\nRoot =", round(root, 6), "\nIterations =", iterations)
 
     # Draw the chart
-    draw_chart(f)
+    draw_chart(midpoints_history)
 
 # Entry point of the program
 if __name__ == "__main__":
